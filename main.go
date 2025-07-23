@@ -13,20 +13,15 @@ func main() {
 	if !asciiart.ValidateInput(Arg) {
 		return
 	}
-	Banner := os.Args[3]
+	Banner := os.Args[2]
 	data, err := os.ReadFile(Banner + ".txt")
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
-
-	text := strings.Split(Arg[2], "\\n")
+	text := strings.Split(Arg[1], "\\n")
 	slice := strings.Split(string(data), "\n")
 	text = asciiart.IsNewline(text)
-	output := asciiart.AsciiPrint(slice, text)
-	err = os.WriteFile(strings.TrimPrefix(os.Args[1], "--output="), []byte(output), 0o644)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	 fmt.Print(asciiart.AsciiPrint(slice, text))
+	
 }
